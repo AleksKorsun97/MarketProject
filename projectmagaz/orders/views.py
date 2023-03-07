@@ -48,7 +48,7 @@ def create_order_page(request):
 
                 obj.products.add(product.id)
             obj.save()
-            
+            backet.products.clear()
     return render(request, 'orders/create.html', context=context)
 
 def order_tracking(request, id):

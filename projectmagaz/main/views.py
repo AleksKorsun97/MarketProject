@@ -46,4 +46,7 @@ def auth(request):
 def logoutuser(request):
     logout(request)
     return redirect('main')
+
+def redirect_to_main(request):
+    return redirect ('main')
 # Create your views here.

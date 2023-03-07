@@ -39,6 +39,7 @@ urlpatterns = [
     path('create/',create_order_page),
     path('tracking/<int:id>/',order_tracking),
     path('orderspage/',orders_page),
+    path('',redirect_to_main),
     
 
 
