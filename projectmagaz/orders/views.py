@@ -48,8 +48,8 @@ def create_order_page(request):
 
                 obj.products.add(product.id)
             obj.save()
-            for product in products:
-                backet.products.remove(product)
+            # for product in products:
+            #     backet.products.remove(product)
     return render(request, 'orders/create.html', context=context)
 
 def order_tracking(request, id):
