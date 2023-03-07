@@ -1,0 +1,88 @@
+{% extends "products/main.html" %}
+{% load static %}
+
+{% block links %}
+
+<link rel="stylesheet" href="{% static 'orders/CSS/create.css' %}">
+<link rel="stylesheet" href="{% static 'orders/CSS/order_tracking.css' %}">
+{% endblock links %}
+
+{% block content %}
+
+
+<h6>Замовлення</h6>
+
+<main class="kolo_order">
+    <div class="kolox">
+        <div class="kolo1">
+            <div class="circle-block1">
+            
+            </div>
+            <p>Чекає на оплату</p>
+        </div>
+
+            <div class="kolo2">
+                {% if order.status > 0 %}
+                  <div class="circle-block1">
+                {% else %}
+                <div class="circle-block2">
+                {% endif %}
+                </div>
+                <p>Готуємо до відправки</p>
+            </div>
+
+        <div class="kolo3">
+            {% if order.status > 1 %}
+              <div class="circle-block1">
+            {% else %}
+            <div class="circle-block3">
+            {% endif %}
+            </div>
+            <p>Відправлено</p>
+        </div>
+
+        <div class="kolo4">
+            {% if order.status > 2 %}
+              <div class="circle-block1">
+            {% else %}
+            <div class="circle-block4">
+            {% endif %}
+            </div>
+            <p>На пошті</p>
+        </div>
+
+        <div class="kolo5">
+            {% if order.status > 3 %}
+              <div class="circle-block1">
+            {% else %}
+            <div class="circle-block5">
+                {% endif %}
+            </div>
+            <p>Доставлено</p>
+        </div>
+
+    </div>
+    <div class="orderinfo">
+        <div class="products_list">
+            {% for product in products %}
+            <div class="product1">
+                <img src="{{product.image}}" alt="" class="img_create">
+                <a href="" class="product_create">{{product.title}}</a>
+                <p class="total_price">{{product.price}} грн</p>
+
+            </div>
+            {% endfor %}
+            <p class="total_price">{{fullprice}} грн</p>
+        </div>
+        <form action="" class="create_form">
+            <h5>Інформація для доставки</h5>
+            <p>Нова пошта: {{order.post}}</p>
+            <p>Номер телефону: {{order.number}}</p>
+            <p>Місто: {{order.city}}</p>
+            <p>Імя та Прізвище: {{order.name_surname}}</p>
+
+        </form>
+    </div>
+</main>
+
+{% endblock content %}

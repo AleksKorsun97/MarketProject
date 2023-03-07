@@ -1,0 +1,100 @@
+{% load static %}
+<html lang="en">
+<head>
+    <script>
+        if ( window.history.replaceState ) {
+           window.history.replaceState( null, null, window.location.href );
+       }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,
+wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" 
+rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'adminpanel/CSS/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'adminpanel/CSS/order.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+    <header class="title">
+        
+        <ul>
+            <img src="{% static 'adminpanel/images/logo.png' %}" alt="" class="logo">
+            <p>Адміністрація сайту:</p>
+            <li><a href="/kategori">Категорії</a></li>
+            <li class="selected"><a href="/order">Замовлення</a></li>
+            <li><a href="/product">Товари</a></li>
+        </ul>
+        
+    </header>
+    <h1>Замовлення</h1>
+    <main>
+
+        <div class="kategori_list"> 
+            
+            {% for order in orders %}
+            <div class="kategori">
+                <p>{{order.order.id}}</p>
+                <p>{{order.status}}</p>
+                <a href="/order/{{order.order.id}}">Переглянути</a>
+            
+            </div>
+            {% endfor %}
+        </div>
+            {% if current_order %}
+              
+            
+        <div class="current_order">
+            <span>
+                <p>Імя та Прізвище:</p>
+                <p>{{current_order.name_surname}}</p>
+            </span>
+            <span>
+                <p>Місто:</p>
+                <p>{{current_order.city}}</p>
+            </span>
+            <span>
+                <p>Номер телефону:</p>
+                <p>{{current_order.number}}</p>
+            </span>
+            <span>
+                <p>Номер Пошти:</p>
+                <p>{{current_order.post}}</p>
+            </span>
+            {% for product in products %}
+              <a href="/products/{{product.id}}" target="_blank" class="titleorder">{{product.title}}</a>
+            {% endfor %}
+            
+            <form action="" method="POST" class="orderoption">
+            {% csrf_token %}
+                <select name="status" id="" placeholder="Обрати статус замовлення" class="selectstatus">
+                    <option value="0">
+                        Чекаєм на оплату
+                    </option>
+                    <option value="1">
+                        Готуємо до відправки
+                    </option>
+                    <option value="2">
+                        Відправлено
+                    </option>
+                    <option value="3">
+                        На пошті
+                    </option>
+                    <option value="4">
+                        Доставлено
+                    </option>
+                </select>
+                <button>Зберегти</button>
+            </form>
+        </div>
+            {% endif %}
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family:'Mulish', sans-serif;
+}
+
+body{
+
+    background-color: rgb(214, 174, 113);
+    gap: 20px;
+}
+
+.title ul{
+    background-color: rgb(238, 215, 186);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    font-size: 35px;
+    margin-top: 10px;
+    list-style: none;
+  
+}
+
+.title p{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.create_form{
+    flex-direction: column;
+    border:  2px rgb(0, 0, 0) solid;
+    
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding-right: 250px;
+    padding-left: 250px;
+}
+.create_form input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 15px;
+    width: 200px;
+    height: 30px;
+    margin-top: 10px;
+}
+.create_form button{
+    height: 40px;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(85, 230, 181);
+    border-radius: 20px;
+    margin-top: 10px;
+    
+    
+}
+
+.revision_tovar{
+    border:  2px rgb(0, 0, 0) solid;
+    padding-left: 500px;
+    display: flex;
+    border-radius: 15px;
+    padding-right: 250px;
+    padding-left: 250px;
+
+}
+
+.revision_tovar button{
+    font-size: 20px;
+    height: 40px;
+    width: 150px;
+    background-color: rgb(85, 230, 181);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    
+}
+
+header{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin-left: 80px;
+
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 29px;
+    font-size: 40px;
+}

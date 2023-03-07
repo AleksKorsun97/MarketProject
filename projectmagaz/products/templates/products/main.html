@@ -1,0 +1,100 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'products/CSS/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,
+    1000&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'adminpanel/images/logo.png' %}" type="image/x-icon">
+    {% block links %}
+      
+    {% endblock links %}
+    <title>Internet magazin VSE</title>
+</head>
+<body>
+    {% block menu %}
+      
+    
+    <header>
+        <a href="/main"><img src="{% static 'adminpanel/images/logo.png' %}" alt="" class="logo"></a>
+        <form action="" method="POST" >
+
+          {% csrf_token %}
+          <input type="search" placeholder="Пошук" name="search">
+          <button>Знайти</button>
+        </form>
+        {% if request.user.is_authenticated %}
+         <a href="/backet" class="backet"><img src="{% static 'products/images/logos.png' %}" alt="" class="logos"></a> 
+        {% endif %}
+        
+        <div>
+            {% if request.user.is_authenticated %}
+              <p>{{request.user.first_name}} {{request.user.last_name}} </p>
+              <img src="{% static 'main/image/person.png' %}" alt="" >
+              <a href="/logout">Вихід</a>
+            {% else %}
+            <a href="/autenfication">Вхід</a>
+            <a href="/register">Реєстрація</a>
+            {% endif %}
+        </div>
+        {% if request.user.is_staff %}
+          <a href="/kategori" class="adminmain">Адмін.панель</a>
+        
+        {% endif %}
+        <a href="/orderspage" class="orderspagemain">Мої замовлення</a>
+
+    </header>
+    {% endblock menu %}
+    
+    {% block content %}
+      
+    
+    <main>
+      {% if not products %}
+        
+      
+        {% for i in content %}
+          <div class="typeproduct">
+            <h2>{{i.producttype.title}}</h2>
+            <div class="products">
+                {% for product in i.products %}
+                  <div class="product">
+                    <img src="{{product.image}}" alt="" class="image">    
+                    <p class="title">{{product.title}}</p>
+                    <p class="price">{{product.price}} грн</p>
+                    <div>
+                        <a href="/products/{{product.id}}">Переглянути</a>
+                        <a href="/addproduct/{{product.id}}" class="addproduct"><img src="{% static 'products/images/logos.png' %}" alt="" class="logos"></a>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+        {% else %}
+        <div class="typeproduct">
+        
+          <div class="products">
+              {% for product in products %}
+                <div class="product">
+                  <img src="{{product.image}}" alt="" class="image">    
+                  <p class="title">{{product.title}}</p>
+                  <p class="price">{{product.price}} грн</p>
+                  <div>
+                      <a href="/products/{{product.id}}">Переглянути</a>
+                      <img src="{% static 'products/images/logos.png' %}" alt="" class="logos">
+                  </div>
+                </div>
+              {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </main>
+    {% endblock content %}
+
+</body>
+</html>

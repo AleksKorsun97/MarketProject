@@ -1,0 +1,26 @@
+{% extends "products/main.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'products/CSS/product.css' %}">
+
+{% endblock links %}
+
+{% block content %}
+    <main>
+        <div class="image_div">
+            <img src="{{product.image}}" alt="">
+
+        </div>
+        <div class="info">
+            <h3>{{product.title}}</h3>
+            <p>Ціна: {{product.price}} грн</p>
+            <p>Опис: {{product.description}}</p>
+            <p>Виробник: {{product.mayker}}</p>
+            <p>Розмір: {{product.size}}</p>
+            <p>Матеріал: {{product.material}}</p>
+        </div>
+        
+    </main>
+    <a href="/addproduct/{{product.id}}" class="backet">Додати до кошику</a>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "products/main.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'orders/CSS/backet.css' %}">
+
+{% endblock links %}
+
+{% block content %}
+<main>
+    <h3>Мої замовлення</h3>
+    {% for order in orders %}
+      <div class="product1">
+        
+        <a class="title" href="/tracking/{{order.order.id}}" >{{order.order.id}}</a>
+        <p>{{order.price}} грн</p>
+        <p>{{order.status}}</p>
+        
+        
+      </div>
+
+    {% endfor %}
+
+</main>
+{% endblock %}

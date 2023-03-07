@@ -1,0 +1,35 @@
+{% extends "products/main.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'orders/CSS/create.css' %}">
+
+{% endblock links %}
+
+{% block content %}
+<h1>Оформити замовлення</h1>
+<main>
+    
+    <div class="products_list">
+        {% for product in products %}
+          <div class="product1">
+            <img src="{{product.image}}" alt="" class="img_create">
+            <a href="" class="product_create">{{product.title}}</a>
+            <p class="total_price">{{product.price}} грн</p>
+
+          </div>
+        {% endfor %}
+        <p class="total_price">{{fullprice}} грн</p>
+    </div>
+    <form action="" method="POST" class="create_form">
+        {% csrf_token %}
+        <input type="number" placeholder=" № Нової пошти" name="number_post">
+        <input type="text" placeholder="Місто" name="city">
+        <input type="number" placeholder="Номер телефону" name="number_phone">
+        <input type="text" placeholder="Імя та Прізвище" name="surname">
+        <button>Замовити</button>
+
+    </form>
+</main>
+  
+{% endblock content %}

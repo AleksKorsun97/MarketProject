@@ -1,0 +1,75 @@
+{% load static %}
+<html lang="en">
+<head>
+    <script>
+        if ( window.history.replaceState ) {
+           window.history.replaceState( null, null, window.location.href );
+       }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'adminpanel/CSS/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'adminpanel/CSS/product.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,
+    300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <title>Adminka</title>
+</head>
+<body>
+    <header class="title">
+        
+        <ul>
+            <img src="{% static 'adminpanel/images/logo.png' %}" alt="" class="logo">
+            <p>Адміністрація сайту:</p>
+            <li><a href="/kategori">Категорії</a></li>
+            <li><a href="/order">Замовлення</a></li>
+            <li class="selected"><a href="/product">Товари</a></li>
+        </ul>
+        
+    </header>
+    <h1>Товари</h1>
+    <main>
+
+        <div class="kategori_list"> 
+            {% for i in Product %}
+            
+            <div class="kategori">
+                <p>{{i.title}}</p>
+                <a href="">Переглянути</a>
+            
+            </div>
+            {% endfor %}
+        </div>
+
+        
+        <form action="" class="create_form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Створити товар</h2>
+
+            <input type="text" placeholder="Назва категорії" name="title">
+            <input type="text" placeholder="Ціна" name="price">
+            <input type="file" placeholder="Обрати картинку" name="image">
+            <select name="kategori" id="">
+                <option disabled  selected value="">
+                    Категорія
+                </option>
+            {% for i in Typeproduct %}
+            <option value="{{i.id}}">
+                {{i.title}}
+            </option>
+            {% endfor %}
+            </select>
+
+            <textarea placeholder="Опис" name="description"></textarea>
+            <input type="text" placeholder="Виробник" name="mayker">
+            <input type="text" placeholder="Матеріал" name="material">
+            <input type="text" placeholder="Розмір" name="size">
+            <button>Створити</button>
+        </form>
+
+    </main>
+
+</body>
+</html>
